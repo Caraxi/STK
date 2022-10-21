@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STK", "STK\STK.csproj", "{DAA90496-9993-4590-A101-06F4408C3A3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STK.Generators", "STK.Generators\STK.Generators.csproj", "{BFEE8F9D-577E-4579-9401-64CEDCFA4C18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ULD", "ULD\ULD.csproj", "{1518CBF0-6107-4A7D-ABD6-B30315AF9EDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STK.Test", "STK.Test\STK.Test.csproj", "{284C46D8-C2B7-412B-8652-BEC42A674563}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAA90496-9993-4590-A101-06F4408C3A3E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DAA90496-9993-4590-A101-06F4408C3A3E}.Debug|x64.Build.0 = Debug|Any CPU
+		{DAA90496-9993-4590-A101-06F4408C3A3E}.Release|x64.ActiveCfg = Release|Any CPU
+		{DAA90496-9993-4590-A101-06F4408C3A3E}.Release|x64.Build.0 = Release|Any CPU
+		{BFEE8F9D-577E-4579-9401-64CEDCFA4C18}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BFEE8F9D-577E-4579-9401-64CEDCFA4C18}.Debug|x64.Build.0 = Debug|Any CPU
+		{BFEE8F9D-577E-4579-9401-64CEDCFA4C18}.Release|x64.ActiveCfg = Release|Any CPU
+		{BFEE8F9D-577E-4579-9401-64CEDCFA4C18}.Release|x64.Build.0 = Release|Any CPU
+		{1518CBF0-6107-4A7D-ABD6-B30315AF9EDC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1518CBF0-6107-4A7D-ABD6-B30315AF9EDC}.Debug|x64.Build.0 = Debug|Any CPU
+		{1518CBF0-6107-4A7D-ABD6-B30315AF9EDC}.Release|x64.ActiveCfg = Release|Any CPU
+		{1518CBF0-6107-4A7D-ABD6-B30315AF9EDC}.Release|x64.Build.0 = Release|Any CPU
+		{284C46D8-C2B7-412B-8652-BEC42A674563}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{284C46D8-C2B7-412B-8652-BEC42A674563}.Debug|x64.Build.0 = Debug|Any CPU
+		{284C46D8-C2B7-412B-8652-BEC42A674563}.Release|x64.ActiveCfg = Release|Any CPU
+		{284C46D8-C2B7-412B-8652-BEC42A674563}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1280292-94D2-4F00-A994-D856BE7DD97B}
+	EndGlobalSection
+EndGlobal

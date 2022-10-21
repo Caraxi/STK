@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RootNamespace>STK</RootNamespace>
+        <DebugType>full</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+        
+    </PropertyGroup>    
+<ItemGroup>
+    <Compile Remove="Generated\**" />
+    <None Include="Generated\**" />
+    <ProjectReference Include="..\ULD\ULD.csproj" />    
+    
+    <Reference Include="FFXIVClientStructs">
+            <Private>false</Private>
+            <HintPath>..\..\SimpleTweaksPlugin\bin\x64\Debug\FFXIVClientStructs.dll</HintPath>
+        </Reference>
+        <ProjectReference Include="..\STK.Generators\STK.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+</Project>

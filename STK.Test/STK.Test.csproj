@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Reference Include="ImGui.NET">
+            <Private>false</Private>
+            <HintPath>$(APPDATA)\XIVLauncher\addon\Hooks\dev\ImGui.NET.dll</HintPath>
+        </Reference>
+        <Reference Include="Dalamud">
+            <Private>false</Private>
+            <HintPath>$(APPDATA)\XIVLauncher\addon\Hooks\dev\Dalamud.dll</HintPath>
+        </Reference>
+        <Reference Include="Lumina">
+            <Private>false</Private>
+            <HintPath>$(APPDATA)\XIVLauncher\addon\Hooks\dev\Lumina.dll</HintPath>
+        </Reference>
+        <Reference Include="ImGuiScene">
+            <Private>false</Private>
+            <HintPath>$(APPDATA)\XIVLauncher\addon\Hooks\dev\ImGuiScene.dll</HintPath>
+        </Reference>
+        <Reference Include="SimpleTweaksPlugin">
+            <Private>false</Private>
+            <HintPath>..\..\SimpleTweaksPlugin\bin\x64\Debug\SimpleTweaksPlugin.dll</HintPath>
+        </Reference>
+        <Reference Include="FFXIVClientStructs">
+            <Private>false</Private>
+            <HintPath>..\..\SimpleTweaksPlugin\bin\x64\Debug\FFXIVClientStructs.dll</HintPath>
+        </Reference>
+        <ProjectReference Include="..\STK\STK.csproj" />
+        <ProjectReference Include="..\ULD\ULD.csproj" />
+    </ItemGroup>
+</Project>
