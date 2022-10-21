@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Reflection;
 using ImGuiNET;
 using ULD.Node;
 using ULD.Node.Component;
@@ -78,6 +79,9 @@ public class NodePropertyEditor {
                     case TextNode textNode:
                         DrawTextNodeProperties(textNode);
                         break;
+                    case NineGridNode nineGridNode:
+                        DrawNineGridNodeProperties(nineGridNode);
+                        break;
                     case BaseComponentNode componentNode:
                         DrawComponentNodeProperties(componentNode);
                         break;
@@ -152,8 +156,27 @@ public class NodePropertyEditor {
         ImGui.Text("");
         
         PropertyEditor("Text ID", ref textNode.TextId);
+        EnumPropertyEditor("Sheet Type", "SheetType");
         
+        PropertyEditor("Color", ref textNode.Color);
+        EnumPropertyEditor("Alignment");
+        EnumPropertyEditor("Font");
+        PropertyEditor("Font Size", ref textNode.FontSize);
+        PropertyEditor("Edge Color", ref textNode.EdgeColor);
         
+        PropertyEditor("Bold", ref textNode.Bold);
+        PropertyEditor("Italic", ref textNode.Italic);
+        PropertyEditor("Edge", ref textNode.Edge);
+        PropertyEditor("Glare", ref textNode.Glare);
+        PropertyEditor("Multiline", ref textNode.Multiline);
+        PropertyEditor("Ellipsis", ref textNode.Ellipsis);
+        PropertyEditor("Paragraph", ref textNode.Paragraph);
+        PropertyEditor("Emboss", ref textNode.Emboss);
+        
+        PropertyEditor("Character Spacing", ref textNode.CharSpacing);
+        PropertyEditor("Line Spacing", ref textNode.LineSpacing);
+        
+        PropertyEditor("Unknown 2", ref textNode.Unk2);
         DrawResNodeProperties(textNode);
     }
     
@@ -184,12 +207,64 @@ public class NodePropertyEditor {
         PropertyEditor("Add Colour", ref Node.AddRed, ref Node.AddGreen, ref Node.AddBlue);
         
         PropertyEditor("Alpha", ref Node.Alpha);
-        
-        
-
-
     }
 
+    private void DrawNineGridNodeProperties(NineGridNode node) {
+        ImGui.TableNextColumn();
+        ImGui.TextDisabled("NineGridNode");
+        ImGui.TableNextColumn();
+        ImGui.Text("");
+        
+        PropertyEditor("Part List ID", ref node.PartListId);
+        PropertyEditor("Part ID", ref node.PartId);
+        
+        EnumPropertyEditor("Grid Parts Type", nameof(node.GridPartsType));
+        EnumPropertyEditor("Grid Render Type", nameof(node.GridRenderType));
+        
+        
+        PropertyEditor("Top Offset", ref node.TopOffset);
+        PropertyEditor("Left Offset", ref node.LeftOffset);
+        PropertyEditor("Right Offset", ref node.RightOffset);
+        PropertyEditor("Bottom Offset", ref node.BottomOffset);
+        
+        PropertyEditor("Unknown 3", ref node.Unk3);
+        PropertyEditor("Unknown 4", ref node.Unk4);
+       
+        DrawResNodeProperties(node);
+    }
+
+    private Dictionary<string, FieldInfo?> enumProperties = new();
+    
+
+    private void EnumPropertyEditor(string name, string? enumName = null) {
+        enumName ??= name;
+        PropertyName(name);
+        ImGui.SetNextItemWidth(-1);
+
+        if (!enumProperties.TryGetValue(enumName, out var fi)) {
+            fi = Node.GetType().GetField(enumName);
+            enumProperties.Add(enumName, fi);
+        }
+
+        if (fi == null || !fi.FieldType.IsEnum) {
+            ImGui.Text("Error");
+        } else {
+            var currentValue = fi.GetValue(Node);
+
+            if (ImGui.BeginCombo($"###enumSelect_{name}_{enumName}", $"{currentValue}")) {
+
+                var options = Enum.GetValues(fi.FieldType);
+
+                foreach (var o in options) {
+                    if (ImGui.Selectable($"{o}", currentValue == o)) {
+                        fi.SetValue(Node, o);
+                    }
+                }
+                ImGui.EndCombo();
+            }
+        }
+    }
+    
     private void PropertyName(string name) {
         ImGui.TableNextColumn();
 

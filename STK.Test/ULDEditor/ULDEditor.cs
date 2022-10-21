@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 using Dalamud.Interface.Colors;
@@ -26,6 +27,8 @@ public class UldEditor : IDisposable {
 
     private string lastError = string.Empty;
 
+    private PreviewAddon? previewAddon;
+
 
     private ResNode? cutNode = null;
 
@@ -51,9 +54,9 @@ public class UldEditor : IDisposable {
         if (!isOpen) {
             Service.PluginInterface.UiBuilder.Draw -= this.DrawWindow;
             STKTest.editor = null;
+            previewAddon?.Dispose();
+            previewAddon = null;
         }
-
-
     }
 
     public void DrawListEditorTabs<T>(ListHeader<T> list, ULD.Uld uld) where T : ListElement, new() {
@@ -488,6 +491,8 @@ public class UldEditor : IDisposable {
                     }
                 } catch (Exception ex) {
                     currentFile = null;
+                    previewAddon?.Dispose();
+                    previewAddon = null;
                     currentFileName = "Failed to Load";
                     currentFileFromGame = false;
                     activeModal = null;
@@ -519,7 +524,8 @@ public class UldEditor : IDisposable {
         
         
         if (ImGui.Button("Load From File")) {
-
+            previewAddon?.Dispose();
+            previewAddon = null;
             var bytes = File.ReadAllBytes(Path.Join(Path.GetDirectoryName(STKTest._tweakProvider!.AssemblyPath), "Test.uld"));
             currentFile = new ULD.Uld(new BufferReader(bytes));
             
@@ -559,13 +565,26 @@ public class UldEditor : IDisposable {
                 }
                 ImGui.EndMenu();
             }
+
+            if (currentFile != null) {
+
+                if (ImGui.MenuItem("Preview")) {
+                    if (!STK.Initalized) STK.Initalize();
+                    
+                    previewAddon?.Dispose();
+                    previewAddon = new PreviewAddon(currentFile);
+                }
+                
+                
+            }
+            
             ImGui.EndMenuBar();
         }
         
     }
     
     public void Dispose() {
-        
+        previewAddon?.Dispose();
     }
     
     

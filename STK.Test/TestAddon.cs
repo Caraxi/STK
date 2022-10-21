@@ -8,7 +8,6 @@ public unsafe class TestAddon : Addon {
     
     public override bool GetUldData(out byte[] data) {
         try {
-            var dir = 
             data = File.ReadAllBytes(Path.Join(Path.GetDirectoryName(STKTest._tweakProvider!.AssemblyPath), "Test.uld"));
             return true;
         } catch (Exception ex) {
